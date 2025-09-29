@@ -3,7 +3,7 @@ import {
   Box,
   Text,
   Grid,
-  SimpleGrid,
+  Flex,
   Image,
   VStack,
   Spinner,
@@ -16,11 +16,9 @@ const WhyChooseUs = () => {
   useEffect(() => {
     const fetchFeatures = async () => {
       try {
-        const url = `/api/whychooseus`;
-        console.log("📡 Fetching from:", url);
+        const url = `${import.meta.env.VITE_API_URL}/api/whychooseus`;
         const res = await fetch(url);
         const data = await res.json();
-        console.log("✅ API response:", data);
         setFeatures(data);
       } catch (err) {
         console.error("❌ Error fetching WhyChooseUs:", err);
@@ -31,7 +29,6 @@ const WhyChooseUs = () => {
     fetchFeatures();
   }, []);
 
-
   if (loading) {
     return (
       <Box textAlign="center" py={20}>
@@ -41,64 +38,80 @@ const WhyChooseUs = () => {
   }
 
   return (
-    <Box bg="#f8eae2" py={20} px={{ base: 4, md: 10 }}>
-      {/* Heading */}
-      <Box textAlign="center" mb={12}>
-        <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="brown.700">
-          WHY CHOOSE US
-        </Text>
-        <Text fontSize="md" mt={2} color="gray.600">
-          “MORE THAN FURNITURE – A LIFESTYLE UPGRADE.”
-        </Text>
-      </Box>
+    <Box bg="#fceee8"  py={{ base: 2, md: 4 }} px={{ base: 4, md: 10 }} textAlign="center" >
+      {/* ✅ Heading */}
+      <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="#61392f" mb={3}>
+        WHY CHOOSE US
+      </Text>
+      <Text fontSize="md" fontWeight="bold "color="#61392f" mb={12}>
+        “MORE THAN FURNITURE – A LIFESTYLE UPGRADE.”
+      </Text>
 
-      {/* Grid */}
-      <Grid
-        templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }}
-        gap={8}
+      {/* ✅ Grid */}
+      <Flex
+        wrap="wrap"
+        justify="center"
+        align="start"
+        gap={12}
+        maxW="1400px"
+        w="100%"
+        mx="auto"
+         px={{ base: 4, md: 8 }}
+        pb={8}
       >
-
         {features.map((item, i) => (
           <VStack
             key={i}
-            bg="white"
-            borderRadius="lg"
-            boxShadow="md"
-            p={4}
-            _hover={{ transform: "scale(1.03)", transition: "0.3s" }}
+            spacing={3}
+            bg="#fceee8"
+            borderRadius="2xl"
+            overflow="hidden"
+            w="100%"
+            maxW="365px"
+            textAlign="center"
           >
-            <Image
-              src={item.icon}
-              alt={item.title}
-              borderRadius="md"
+            <Box
               w="100%"
-              h={{ base: "180px", md: "220px" }}
-              objectFit="cover"
-            />
-            <Text fontWeight="bold" fontSize="lg" textAlign="center">
+              h={{ base: "200px", md: "220px" }}
+              overflow="hidden"
+              borderRadius="2xl"
+              m="0"
+            >
+              <Image
+                src={item.icon}
+                alt={item.title}
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                display="block"
+                 _hover={{transform: "translateY(4px)" }}
+                  transition="0.3s"
+              />
+            </Box>
+
+            <Text
+              fontWeight="bold"
+              fontSize="lg"
+              color="#61392f"
+              textTransform="uppercase"
+              mt={2}
+            >
               {item.title}
             </Text>
-            <Text fontSize="sm" textAlign="center" color="gray.600">
+
+            <Text
+              fontSize="sm"
+              color="#61392f"
+              maxW="90%"
+              mx="auto"
+              pb={6}
+              lineHeight="1.5"
+            >
               {item.desc}
             </Text>
           </VStack>
         ))}
-      </Grid>
-
-      {/* <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={10}>
-  {features.map((item, i) => (
-    <VStack key={i} bg="white"
-            borderRadius="lg"
-            boxShadow="md"
-            p={4}
-            _hover={{ transform: "scale(1.03)", transition: "0.3s" }}>
-      <Image src={item.icon} alt={item.title} />
-      <Text fontWeight="bold">{item.title}</Text>
-      <Text fontSize="sm" color="gray.600">{item.desc}</Text>
-    </VStack>
-  ))}
-</SimpleGrid> */}
-
+      </Flex>
     </Box>
   );
 };

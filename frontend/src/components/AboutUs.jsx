@@ -18,7 +18,7 @@ const AboutUs = () => {
       <Heading
         as="h2"
         textAlign="center"
-        mb={2}
+        mb={3}
         fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
         color="#61392f"
       >

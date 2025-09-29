@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import collectionsRoutes from "./routes/collectionsRoutes.js";
 import whyChooseRoutes from "./routes/whyChooseRoutes.js";
+import roomTypesRoutes from "./routes/roomTypesRoutes.js";
+
  
 import path from "path";
 import { fileURLToPath } from "url";
@@ -21,11 +23,14 @@ const __dirname = path.resolve();
 // ✅ serve uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 app.use('/why', express.static(path.join(__dirname, 'public/why')));
+app.use('/rooms', express.static(path.join(__dirname, 'public/rooms')));
 
 
 // ✅ Use the new collections route
 app.use("/api/collections", collectionsRoutes);
 app.use("/api/whychooseus", whyChooseRoutes);
+app.use("/api/rooms", roomTypesRoutes);
+
 
 
 // ✅ Connect to MongoDB

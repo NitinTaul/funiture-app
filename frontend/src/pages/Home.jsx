@@ -7,6 +7,7 @@ import ShopByCategories from "../components/ShopByCategories";
 import ReviewCarousel from "../components/ReviewCarousel";
 import Banner from "../assets/WEB BANNER 50.png";
 import Banner2 from "../assets/banner2.png";
+import Banner3 from "../assets/banner3.png";
 
 import { Box, Image } from "@chakra-ui/react";
 
@@ -17,6 +18,18 @@ export default function Home() {
       <NewCollections />
       <AboutUs />
       <WhyChooseUs />
+      <Box w="100%"overflow="hidden"  bg="#FCEFE9">
+        <Image
+          src={Banner3}
+          alt="Web Banner-1"
+          w="100%"
+          h="100%"
+          objectFit="cover"
+          objectPosition="left"
+          display="block"
+         
+        />
+      </Box>
       <ShopByRoom />
       <Box w="100%" mt={8} mb={8} overflow="hidden">
         <Image
