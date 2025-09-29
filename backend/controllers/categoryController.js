@@ -1,7 +1,6 @@
-// controllers/categoryController.js
 import Category from "../models/category.js";
 
-// ✅ Get all categories
+// Get all categories
 export const getCategories = async (req, res) => {
   try {
     const categories = await Category.find();
