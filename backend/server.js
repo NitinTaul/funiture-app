@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import collectionsRoutes from "./routes/collectionsRoutes.js";
+import whyChooseRoutes from "./routes/whyChooseRoutes.js";
+ 
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -14,14 +16,17 @@ app.use(express.json());
 
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+// const __dirname = path.dirname(__filename);
+const __dirname = path.resolve();
 // ✅ serve uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+app.use('/why', express.static(path.join(__dirname, 'public/why')));
 
 
 // ✅ Use the new collections route
 app.use("/api/collections", collectionsRoutes);
+app.use("/api/whychooseus", whyChooseRoutes);
+
 
 // ✅ Connect to MongoDB
 mongoose

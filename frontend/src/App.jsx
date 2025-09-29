@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ProductDetails from './pages/ProductDetails'
 import Navbar from './components/Navbar'
+
 import Footer from './components/Footer'
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
+      
       <Footer />
     </>
   )

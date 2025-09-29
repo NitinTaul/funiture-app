@@ -31,15 +31,13 @@ export default function HeroBanner() {
       px={4}
     >
       {/* Overlay for text readability */}
-      <Box
+     {/* <Box
         position="absolute"
-        top={0}
-        left={0}
-        w="100%"
-        h="100%"
+        inset={0} 
         bg="rgba(0,0,0,0.35)"
         zIndex={0}
-      />
+        pointerEvents="none"
+/> */}
 
       {/* Content section (aligned to top) */}
       <Flex
@@ -87,7 +85,7 @@ export default function HeroBanner() {
             to="/shop"
             w={144}
             borderRadius="full"
-            bg="brown.600"
+            bg="#61392f"
             color="white"
             _hover={{ bg: "#13bce2ff" }}
             transition="all 0.2s"
@@ -104,7 +102,7 @@ export default function HeroBanner() {
             to="/about"
             w={144}
             borderRadius="full"
-            bg="brown.600"
+            bg="#61392f"
             color="white"
             _hover={{ bg: "#14c3ebff" }}
             transition="all 0.2s"
