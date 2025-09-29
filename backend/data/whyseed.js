@@ -11,27 +11,27 @@ const whyData = [
   {
     title: "PREMIUM QUALITY",
     desc: "Hand-Picked Materials, Tested For Durability.",
-    icon: `why/vertical-wood-samples-arranged-to-showcase-diverse-natural-textures-photo 1.png`
+    icon: `/why/vertical-wood-samples-arranged-to-showcase-diverse-natural-textures-photo 1.png`
   },
   {
     title: "ELEGANT DESIGNS",
     desc: "A Perfect Blend Of Modern & Traditional.",
-    icon: `why/0_Pf_AVFORZGI-VSVC 1.png`
+    icon: `/why/0_Pf_AVFORZGI-VSVC 1.png`
   },
   {
     title: "CUSTOMIZATION",
     desc: "Made To Fit Your Style And Space.",
-    icon: `why/IMG_4979-1100x738 1.png`
+    icon: `/why/IMG_4979-1100x738 1.png`
   },
   {
     title: "FAST DELIVERY",
     desc: "From Our Store To Your Door – Safely & Quickly.",
-    icon: `why/Delivering Indoor Sofa 1 1.png`
+    icon: `/why/Delivering Indoor Sofa 1 1.png`
   },
   {
     title: "TRUSTED SERVICE",
     desc: "Dedicated Support At Every Step.",
-    icon: `why/5_ed981c48-cda6-494c-8d62-4df0e4e79046 1.png`
+    icon: `/why/5_ed981c48-cda6-494c-8d62-4df0e4e79046 1.png`
   }
 ];
 
