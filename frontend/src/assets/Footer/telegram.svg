@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="22" viewBox="0 0 45.0 22.0" version="1.1">
+  <defs/>
+  <svg x="0" y="0" width="22.0" height="22.0" viewBox="0.0 0.0 22.0 22.0">
+<path d="M21 1L14 21L10 12L1 8L21 1Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <svg x="32.0" y="0" width="13.0" height="13.0" viewBox="0.0 0.0 13.0 13.0">
+<path d="M12 1L1 12" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</svg>
