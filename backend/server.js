@@ -5,6 +5,7 @@ import cors from "cors";
 import collectionsRoutes from "./routes/collectionsRoutes.js";
 import whyChooseRoutes from "./routes/whyChooseRoutes.js";
 import roomTypesRoutes from "./routes/roomTypesRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 
  
 import path from "path";
@@ -30,6 +31,7 @@ app.use('/rooms', express.static(path.join(__dirname, 'public/rooms')));
 app.use("/api/collections", collectionsRoutes);
 app.use("/api/whychooseus", whyChooseRoutes);
 app.use("/api/rooms", roomTypesRoutes);
+app.use("/api/categories", categoryRoutes);
 
 
 

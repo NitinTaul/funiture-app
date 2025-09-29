@@ -16,7 +16,7 @@ const WhyChooseUs = () => {
   useEffect(() => {
     const fetchFeatures = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/api/whychooseus`;
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/whychooseus`;
         const res = await fetch(url);
         const data = await res.json();
         setFeatures(data);

@@ -1,10 +1,10 @@
-// backend/routes/collectionsRoutes.js
+// routes/categoryRoutes.js
 import express from "express";
-import { getNewCollections } from "../controllers/collectionsController.js";
+import { getCategories } from "../controllers/categoryController.js";
 
 const router = express.Router();
 
-// ✅ GET /api/collections - latest 4-6 products
-router.get("/", getNewCollections);
+// ✅ GET /api/categories
+router.get("/", getCategories);
 
 export default router;

@@ -1,81 +1,148 @@
-
 import { useEffect, useState } from "react";
 import {
   Box,
-  SimpleGrid,
+  Flex,
+  VStack,
   Image,
   Text,
-  VStack,
-  Button,
   Center,
+  Spinner,
 } from "@chakra-ui/react";
-// import { ArrowForwardIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import React from "react";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
-const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 
 export default function ShopByRoom() {
   const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/rooms`).then((res) => setRooms(res.data));
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/rooms`).then((res) => setRooms(res.data));
+    setLoading(false);
   }, []);
 
+  if (loading) {
+    return (
+      <Box textAlign="center" py={20}>
+        <Spinner size="xl" />
+      </Box>
+    );
+  }
+
+
   return (
-    <Box my={0} bg="#FFF5F2">
-      <Center>
-        <VStack spacing={2} pt={20} >
-          <Text fontSize="4xl" fontWeight="bold" color="#61392f">
+    <Box  mt={0} >
+      {/* ✅ Section Title */}
+      <Center p={10}bg="#FFF5F2">
+        <VStack spacing={2}>
+          <Text fontSize="3xl" fontWeight="bold" color="#61392f">
             SHOP BY ROOM
           </Text>
-          <Text fontSize="md"  fontWeight="bold" color="#61392f">
+          <Text fontSize="md" color="#61392f">
             “FIND YOUR PERFECT MATCH.”
           </Text>
         </VStack>
       </Center>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} mt={10} px={6}>
-        {rooms.map((room) => (
+      {/* ✅ Responsive Flex Layout */}
+      <Flex
+        wrap="wrap"
+        justify="center"
+        align="start"
+        gap={12}
+        maxW="1400px"
+        w="100%"
+        mx="auto"
+        mt={10}
+        px={{ base: 4, md: 8 }}
+        pb={8}
+      >
+        {rooms.map((room, id) => (
           <VStack
-            key={room._id}
+            key={id}
+            spacing={0}
             bg="white"
-            borderRadius="lg"
+            borderRadius="2xl"
             overflow="hidden"
-            shadow="md"
-            spacing={4}
-          >
-            <Image
-              src={`${API_URL}${room.image}`}
-              alt={room.name}
-              objectFit="cover"
-              w="100%"
-              h="250px"
-            />
-            <VStack spacing={1} pb={4}>
-              <Text fontSize="xl" fontWeight="bold">
-                {room.name.toUpperCase()}
-              </Text>
-              <Text fontSize="sm" color="gray.500">
-                {room.name === "Living Room" && "“Where Conversations Flow.”"}
-                {room.name === "Bed Room" && "“Where Dreams Take Shape.”"}
-                {room.name === "Dining Room" && "“Where Every Meal Becomes A Memory.”"}
-                {room.name === "Office Furniture" && "“Designed For Work, Built For Comfort.”"}
-                {room.name === "Outdoor Furniture" && "“Breathe Fresh, Sit Fresh.”"}
-                {room.name === "Decor & Accessories" && "“The Finishing Touches Of Home.”"}
-              </Text>
+            w="100%"
+            maxW="365px"
+            h="100%"
 
-              <Button
-                rightIcon={<ArrowForwardIcon />}
-                colorScheme="brown"
-                variant="outline"
-                mt={2}
+            textAlign="left"
+            shadow="md"
+            _hover={{ shadow: "lg", transform: "translateY(-4px)", transition: "0.3s" }}
+          >
+            {/*  Room Image */}
+            <Box w="100%" h={{ base: "200px", md: "220px" }} overflow="hidden">
+              <Image
+                src={room.image}
+                alt={room.name}
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                display="block"
+                transition="0.3s"
+                borderTopRadius="2xl"
+                _hover={{ transform: "scale(1.02)" }}
+              />
+            </Box>
+
+            {/* Text + Button Section */}
+            <Flex
+              justify="space-between"
+              align="center"
+              w="100%"
+              px={2}
+              py={4}
+
+              flex="1"
+            >
+              {/* Left Text Section */}
+              <VStack align="start" spacing={0} m={0} p={0}>
+                <Text
+                  fontWeight="bold"
+                  fontSize="lg"
+                  color="#61392f"
+                  textTransform="uppercase"
+                  letterSpacing="wide"
+                >
+                  {room.name}
+                </Text>
+
+                <Text fontSize="sm" color="#61392f" fontStyle="italic">
+                  {room.slug}
+                </Text>
+              </VStack>
+
+              {/*  Buy Now VStack */}
+              <VStack
+                spacing={1}
+                align="center"
+                justify="center"
+                cursor="pointer"
+                _hover={{ textDecoration: "underline" }}
+                color="#61392f"
+                minW="30px"
+                m={0}
+                p={0}
               >
-                BUY NOW
-              </Button>
-            </VStack>
+                <Box _hover={{ transform: "scale(1.2)" }}>
+                  <BsArrowUpRightCircleFill size={24} />
+                </Box>
+
+                <Text fontSize="sm" fontWeight="semibold">
+                  BUY NOW
+                </Text>
+              </VStack>
+            </Flex>
+
           </VStack>
+
         ))}
-      </SimpleGrid>
+      </Flex>
     </Box>
   );
 }
