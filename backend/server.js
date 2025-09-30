@@ -25,6 +25,7 @@ const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 app.use('/why', express.static(path.join(__dirname, 'public/why')));
 app.use('/rooms', express.static(path.join(__dirname, 'public/rooms')));
+app.use("/category", express.static(path.join(__dirname, "public/category")));
 
 
 // ✅ Use the new collections route
