@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Category from "../models/Category.js";
+import Category from "../models/category.js";
 
 dotenv.config();
 
