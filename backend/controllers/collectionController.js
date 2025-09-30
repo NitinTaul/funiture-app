@@ -1,7 +1,7 @@
-// backend/controllers/collectionsController.js
+
 import NewCollection from "../models/NewCollection.js";
 
-// ✅ Get latest 4–6 new collection products
+// Get latest 4–6 new collection products
 export const getNewCollections = async (req, res) => {
   try {
     const collections = await NewCollection.find()

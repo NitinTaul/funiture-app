@@ -1,4 +1,4 @@
-// routes/roomRoutes.js
+
 import express from "express";
 import { getRoomTypes } from "../controllers/roomTypeController.js";
 

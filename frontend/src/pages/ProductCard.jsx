@@ -1,3 +1,4 @@
+//not Fully working
 import { Box, Image, Text } from "@chakra-ui/react";
 
 export default function ProductCard({ title, image, price }) {

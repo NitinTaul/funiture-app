@@ -1,4 +1,4 @@
-// controller/roomController.js
+
 
 import RoomType from "../models/RoomType.js";
 

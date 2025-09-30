@@ -1,4 +1,4 @@
-// src/components/ReviewCarousel.jsx
+// not Fully working
 import React from 'react'
 import { Box, Avatar, Text, Heading } from '@chakra-ui/react'
 

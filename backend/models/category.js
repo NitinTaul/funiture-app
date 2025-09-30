@@ -5,5 +5,4 @@ const categorySchema = new mongoose.Schema({
   image: String,
   slug: String,
 });
-
 export default mongoose.model("Category", categorySchema);

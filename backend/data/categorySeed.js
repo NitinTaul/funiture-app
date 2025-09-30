@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Category from "../models/category.js";
+import Category from "../models/Category.js";
 
 dotenv.config();
 
@@ -65,7 +65,7 @@ const categoryData = [
   {
     name: "HOME DECOR",
     slug: "Complete Your Home’s Story",
-    image: `${BACKEND_URL}/elegant-decorative-vases-and-planters-with-succulents-and-other-plants-on-transparent-background-interior-accessories-cut-out-home-decor-front-view-ai-generated-png 1.png`,
+    image: `${BACKEND_URL}/category/elegant-decorative-vases-and-planters-with-succulents-and-other-plants-on-transparent-background-interior-accessories-cut-out-home-decor-front-view-ai-generated-png 1.png`,
   },
 ];
 

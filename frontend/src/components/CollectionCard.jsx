@@ -1,4 +1,4 @@
-// src/components/CollectionCard.jsx
+//  not required
 import React from 'react'
 import { Box, Image, Heading, Text, Button, Flex, IconButton } from '@chakra-ui/react'
 import { FiHeart, FiShoppingCart } from 'react-icons/fi'

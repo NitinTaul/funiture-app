@@ -1,4 +1,4 @@
-// controller/whyController.js
+
 
 import WhyChoose from "../models/Why.js";
 
