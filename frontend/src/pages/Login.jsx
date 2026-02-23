@@ -175,7 +175,7 @@ export default function Login() {
   }
 
   return (
-    <Box minH="100vh" bg="#60382f" display="flex" justifyContent="center" alignItems="center" py={8} px={4}>
+    <Box minH="100vh" bg="#649ca9" display="flex" justifyContent="center" alignItems="center" py={8} px={4}>
       <Box w="100%" maxW="460px" bg="white" borderRadius="2xl" boxShadow="2xl" overflow="hidden">
 
         <Box bg="#60382f" py={6} textAlign="center">

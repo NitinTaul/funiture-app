@@ -214,7 +214,7 @@ export default function Signup() {
   const passwordsMatch = form.confirmPassword && form.password === form.confirmPassword
 
   return (
-    <Box minH="100vh" bg="#60382f" display="flex" justifyContent="center" alignItems="center" py={8} px={4}>
+    <Box minH="100vh" bg="#649ca9" display="flex" justifyContent="center" alignItems="center" py={8} px={4}>
       <Box w="100%" maxW="520px" bg="white" borderRadius="2xl" boxShadow="2xl" overflow="hidden">
 
         {/* Header */}
