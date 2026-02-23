@@ -32,7 +32,7 @@ export default function OtpVerify() {
   }
 
   return (
-    <Box maxW="sm" mx="auto" mt={20} p={8} bg="gray.800" borderRadius="lg">
+    <Box maxW="sm" mx="auto" mt={20} p={8} bg="white" borderRadius="lg">
       <Heading mb={6} textAlign="center">Verify Email</Heading>
 
       <VStack spacing={4}>

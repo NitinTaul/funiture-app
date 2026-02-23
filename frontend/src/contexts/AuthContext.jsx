@@ -1,66 +1,58 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import api from "../api/axios";
 
-// Create context and export it (optional, can use hook only)
 const AuthContext = createContext();
 
-// AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // true on mount while we check token
 
-  // Check if token exists in localStorage
-  const isAuth = !!localStorage.getItem("accessToken");
+  // ── On app load: if token exists, fetch user from DB ──────────
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      api.get("/auth/me")
+        .then((res) => setUser(res.data))
+        .catch(() => {
+          // Token invalid/expired — clear storage
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          setUser(null);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
-  const login = async (credentials) => {
-    setLoading(true);
+  // ── login: receives { accessToken, refreshToken } from Login.jsx ──
+  const login = async (data) => {
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+
+    // Fetch user profile from DB
     try {
-      const res = await api.post("/auth/login", credentials);
-
-      localStorage.setItem("accessToken", res.data.accessToken);
-      localStorage.setItem("refreshToken", res.data.refreshToken);
-
-      setLoading(false);
-      return res.data;
+      const res = await api.get("/auth/me");
+      setUser(res.data);
     } catch (err) {
-      setLoading(false);
-      throw err;
+      console.error("Failed to fetch user after login", err);
     }
   };
 
-  const signup = async (data) => {
-    setLoading(true);
-    try {
-      const res = await api.post("/auth/register", data);
-      setLoading(false);
-      return res.data;
-    } catch (err) {
-      setLoading(false);
-      throw err;
-    }
-  };
-
+  // ── logout ────────────────────────────────────────────────────
   const logout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     setUser(null);
   };
 
+  const isAuth = !!user;
+
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        isAuth,
-        login,
-        signup,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ user, loading, isAuth, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook for consuming auth context
 export const useAuth = () => useContext(AuthContext);
