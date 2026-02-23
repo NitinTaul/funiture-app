@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box, Image, Heading, Text, Button, Flex, IconButton } from '@chakra-ui/react'
-import api from '../api/api'
+import api from '../api/axios'
 import { useCart } from '../contexts/CartContext'
 import { useLikes } from '../contexts/LikesContext'
 

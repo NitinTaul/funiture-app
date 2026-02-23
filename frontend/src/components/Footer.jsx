@@ -10,6 +10,7 @@ import {
   IconButton,
   Image,
 } from "@chakra-ui/react";
+
 import { MdOutlineLocationOn, MdEmail } from "react-icons/md";
 import Logo from "../assets/Navbar/0c65139e27503d1971895d3c03d34deb1098efb2.png";
 import FooterBg from "../assets/Footer/footerbg.png";
@@ -38,10 +39,9 @@ export default function Footer() {
         mb={10}
       >
         <Flex
-          direction={{ base: "column", sm: "row" }} 
+          direction={{ base: "column", sm: "row" }}
           justify={{ base: "flex-start", sm: "space-between" }}
-          gap={{base: "auto", md: "10"}}
-          maxW="1350px"
+          gap={{ base: 6, md: 10 }} maxW="1350px"
           align="center"
           w="100%"
         >
@@ -135,7 +135,7 @@ export default function Footer() {
         gap={4}
         mb={8}
       >
-        <HStack spacing={4} w="100%" maxW="600px">
+        <HStack spacing={4} w="100%" maxW="600px"align="center">
           <Text fontWeight="bold" whiteSpace="nowrap">
             Subscribe
           </Text>
@@ -145,9 +145,9 @@ export default function Footer() {
             color="black"
             _placeholder={{ color: "gray.500" }}
             size="md"
-            flex="1"
+            flex="3"h="40px"
           />
-          <Button colorScheme="orange" px={8}>
+          <Button colorScheme="orange" px={4}flex="1"h="40px">
             Subscribe
           </Button>
         </HStack>
@@ -168,7 +168,6 @@ export default function Footer() {
           </Link>
         </HStack>
       </Flex>
-
       {/* Custom Line */}
       <Box my={8} h="1px" bg="gray.600" w="100%" />
 
@@ -176,7 +175,7 @@ export default function Footer() {
       <Flex
         justify="space-between"
         direction={{ base: "column", md: "row" }}
-        textAlign={{ base: "center", md: "initial" }} 
+        textAlign={{ base: "center", md: "initial" }}
         gap={2}
       >
         <Text fontSize="sm" color="gray.400">

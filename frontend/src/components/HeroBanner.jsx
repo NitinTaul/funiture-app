@@ -6,9 +6,9 @@ import {
   Input,
   Flex,
   HStack,
-  InputGroup,
+  InputGroup, InputRightElement,
 } from "@chakra-ui/react";
-import { Link,useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuSearch } from "react-icons/lu";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -31,7 +31,7 @@ export default function HeroBanner() {
       px={4}
     >
       {/* Overlay for text readability */}
-     {/* <Box
+      {/* <Box
         position="absolute"
         inset={0} 
         bg="rgba(0,0,0,0.35)"
@@ -43,12 +43,12 @@ export default function HeroBanner() {
       <Flex
         direction="column"
         align="center"
-        justify="flex-start"  
+        justify="flex-start"
         position="relative"
         zIndex={1}
         maxW="900px"
         mx="auto"
-        pt={{ base: 8, md: 12 }}  
+        pt={{ base: 8, md: 12 }}
       >
         <Heading
           fontSize={{ base: "3xl", md: "5xl" }}
@@ -89,7 +89,7 @@ export default function HeroBanner() {
             color="white"
             _hover={{ bg: "#13bce2ff" }}
             transition="all 0.2s"
-            leftIcon={<FaShoppingCart size={44} />}
+          // leftIcon={<FaShoppingCart size={18} />}
           >
             Shop Now
           </Button>
@@ -106,7 +106,7 @@ export default function HeroBanner() {
             color="white"
             _hover={{ bg: "#14c3ebff" }}
             transition="all 0.2s"
-            leftIcon={<FaShoppingCart size={44} />}
+          // leftIcon={<FaShoppingCart size={18} />}
           >
             KNOW MORE
           </Button>
@@ -114,7 +114,7 @@ export default function HeroBanner() {
 
 
         {/* Search Bar */}
-        <InputGroup
+        {/* <InputGroup
           flex="1"
           maxW="400px"
           endElement={<LuSearch color="gray" size={26}  onClick={handleSearchClick}
@@ -133,6 +133,28 @@ export default function HeroBanner() {
             _placeholder={{ color: "gray.400" }}
           
           />
+        </InputGroup> */}
+        {/* Search Bar */}
+        <InputGroup maxW="400px">
+          <Input
+            placeholder="Search Here"
+            bg="white"
+            borderRadius="full"
+            size="lg"
+            h="56px"       
+            pr="50px"     
+          />
+
+          <InputRightElement
+            h="100%"       
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            pr="4"
+          >
+            <LuSearch cursor="pointer" size={24}
+              color="#718096 " />
+          </InputRightElement>
         </InputGroup>
       </Flex>
     </Box>

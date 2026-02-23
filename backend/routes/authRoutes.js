@@ -1,15 +1,17 @@
-const express = require("express");
+import express from "express";
+import * as auth from "../controllers/authController.js";
+import { protect } from "../middleware/authMiddleware.js"; 
+
 const router = express.Router();
-const { register, login, verifyToken } = require("../controllers/authController");
-const authMiddleware = require("../middleware/authMiddleware");
 
-// ✅ Register a new user
-router.post("/register", register);
+router.get("/me", protect, auth.getMe);
+router.post("/register", auth.register);
+router.post("/verify-email", auth.verifyEmailOtp);
+router.post("/login", auth.login);
+router.post("/send-login-otp", auth.sendLoginOtp);
+router.post("/verify-login-otp", auth.verifyLoginOtp);
+router.post("/forgot-password", auth.forgotPassword);
+router.post("/reset-password", auth.resetPassword);
+router.post("/refresh-token", auth.refreshToken);
 
-// ✅ Login existing user
-router.post("/login", login);
-
-// ✅ Verify token (protected route example)
-router.get("/verify", authMiddleware, verifyToken);
-
-module.exports = router;
+export default router;

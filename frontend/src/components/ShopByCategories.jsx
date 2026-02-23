@@ -29,6 +29,7 @@ const ShopByCategories = () => {
         gap={6}
         maxW="1100px"
         mx="auto"
+        px={{ base: 4, md: 6, lg: 0 }}
       >
         {categories.map((cat) => (
           <VStack

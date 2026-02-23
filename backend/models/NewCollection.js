@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 const newCollectionSchema = new mongoose.Schema({
   title: String,
   subtitle: String,
-  image: String,
+  image: {
+    type: String,
+    trim: true,
+  },
   price: Number,
   badges: [String],
   colors: [String],

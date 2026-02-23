@@ -1,35 +1,90 @@
-// src/pages/Login.jsx
-import React, { useState } from 'react'
-import { Box, Button, Input, Heading, VStack } from '@chakra-ui/react'
-import { useAuth } from '../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import {
+  Box,
+  Button,
+  Input,
+  Heading,
+  VStack,
+  Text,
+  Link,HStack
+} from "@chakra-ui/react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import api from "../api/axios"
+import { useAuth } from "../contexts/AuthContext"
 
 export default function Login() {
-  const { login } = useAuth()
   const nav = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const { login } = useAuth()
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
-  const submit = async () => {
+  const handleLogin = async () => {
     setLoading(true)
     try {
-      await login({ email, password })
-      setLoading(false)
-      nav('/')
-    } catch {
-      setLoading(false)
+      const res = await api.post("/auth/login", { email, password })
+      login(res.data)
+      nav("/")
+    } catch (err) {
+      console.log(err.response?.data?.message)
     }
+    setLoading(false)
+  }
+
+  const sendOtp = async () => {
+    await api.post("/auth/send-login-otp", { email })
+    nav("/verify-login-otp", { state: { email } })
   }
 
   return (
-    <Box className="container" maxW="md" mt={10}>
-      <Heading mb={6}>Login</Heading>
+  <Box
+  minH="100vh"
+  bg="#60382f"
+  display="flex"
+  justifyContent="center"
+  alignItems="center"
+>
+  <Box
+    w="100%"
+    maxW="500px"
+    p={8}
+    bg="white"
+    borderRadius="lg"
+    boxShadow="lg"
+  >
+      <Heading mb={6} textAlign="center">Login</Heading>
+
       <VStack spacing={4}>
-        <Input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-        <Input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        <Button onClick={submit} isLoading={loading} width="full">Login</Button>
+        <Input placeholder="Email" onChange={e => setEmail(e.target.value)} />
+        <Input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+
+        <Button colorScheme="blue" width="full" onClick={handleLogin} isLoading={loading}>
+          Login
+        </Button>
+
+        <Button variant="outline" width="full" onClick={sendOtp}>
+          Login with OTP
+        </Button>
+
+        <Text fontSize="sm">
+          <Link color="blue.400" onClick={() => nav("/forgot-password")}>
+            Forgot Password?
+          </Link>
+        </Text>
+
+        <HStack justify="center" mt={4}>
+          <Text fontSize="sm">Don't have an account?</Text>
+          <Link
+            color="blue.400"
+            fontSize="sm"
+            onClick={() => nav("/signup")}
+          >
+            Register here
+          </Link>
+        </HStack>
       </VStack>
+    </Box>
     </Box>
   )
 }

@@ -2,3 +2,42 @@
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Inter, system-ui, Arial, sans-serif; background: #FAFAFA; }
 .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  color: white;
+}
+
+.container {
+  width: 350px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #1e293b;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}

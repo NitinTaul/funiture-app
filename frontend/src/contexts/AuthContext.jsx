@@ -1,93 +1,66 @@
-// src/contexts/AuthContext.jsx
-"use client"
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import api from '../api/api'
-import { toaster } from "@/components/ui/toaster"
+import React, { createContext, useContext, useState } from "react";
+import api from "../api/axios";
 
-const AuthContext = createContext()
+// Create context and export it (optional, can use hook only)
+const AuthContext = createContext();
 
+// AuthProvider component
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const [token, setToken] = useState(localStorage.getItem('token') || null)
-  const [loading, setLoading] = useState(false)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (token) {
-      api.get('/auth/me')
-        .then(res => setUser(res.data))
-        .catch(() => {
-          // handle if /auth/me fails or is not available
-        })
-    }
-  }, [token])
+  // Check if token exists in localStorage
+  const isAuth = !!localStorage.getItem("accessToken");
 
   const login = async (credentials) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await api.post('/auth/login', credentials)
-      localStorage.setItem('token', res.data.token)
-      setToken(res.data.token)
-      setUser(res.data.user || null)
+      const res = await api.post("/auth/login", credentials);
 
-      toaster.create({
-        title: "Logged in successfully",
-        type: "success",
-      })
+      localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
 
-      setLoading(false)
-      return res.data
+      setLoading(false);
+      return res.data;
     } catch (err) {
-      setLoading(false)
-      toaster.create({
-        title: err?.response?.data?.message || "Login failed",
-        type: "error",
-      })
-      throw err
+      setLoading(false);
+      throw err;
     }
-  }
+  };
 
   const signup = async (data) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await api.post('/auth/register', data)
-      localStorage.setItem('token', res.data.token)
-      setToken(res.data.token)
-      setUser(res.data.user || null)
-
-      toaster.create({
-        title: "Account created successfully",
-        type: "success",
-      })
-
-      setLoading(false)
-      return res.data
+      const res = await api.post("/auth/register", data);
+      setLoading(false);
+      return res.data;
     } catch (err) {
-      setLoading(false)
-      toaster.create({
-        title: err?.response?.data?.message || "Signup failed",
-        type: "error",
-      })
-      throw err
+      setLoading(false);
+      throw err;
     }
-  }
+  };
 
   const logout = () => {
-    localStorage.removeItem('token')
-    setToken(null)
-    setUser(null)
-
-    toaster.create({
-      title: "Logged out successfully",
-      type: "info",
-    })
-  }
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setUser(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, signup, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        isAuth,
+        login,
+        signup,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => useContext(AuthContext)
+// Hook for consuming auth context
+export const useAuth = () => useContext(AuthContext);

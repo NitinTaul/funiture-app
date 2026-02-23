@@ -10,8 +10,24 @@ import Banner2 from "../assets/banner2.png";
 import Banner3 from "../assets/banner3.png";
 
 import { Box, Image } from "@chakra-ui/react";
-
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  // const { logout } = useAuth()
+   const nav = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      const timer = setTimeout(() => {
+        nav("/login");
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [user, nav]);
+
   return (
     <>
       <HeroBanner />
